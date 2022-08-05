@@ -19,8 +19,8 @@ import lombok.Data;
  */
 @Data
 @MappedSuperclass
-public class MedicationData extends BaseResponse implements Serializable{
-    
+public class MedicationData extends BaseResponse implements Serializable {
+
     @Pattern(regexp = "[\\w\\-\\_0-9]+", message = "medication name can only accept letters, numbers, hypeh(-), and underscore(_)")
     @Column(unique = true, nullable = false, length = 150)
     @NotBlank(message = "medidcation name can not be null or blank")
@@ -33,6 +33,10 @@ public class MedicationData extends BaseResponse implements Serializable{
     @Column(unique = true, nullable = false, length = 50)
     @Pattern(regexp = "^[\\_A-Z0-9]*$", message = "medication code can only accept upper case letters, underscore(_) and numbers")
     protected String code;
+    /**
+     * this holds only a part of the image path which is dynamic and the rest is
+     * built in the entity class
+     */
     @Lob
-    protected String imagePath;
+    protected String imageId;
 }

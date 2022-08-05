@@ -8,6 +8,7 @@ import com.mulsalasoft.interview.drones.entities.Drone;
 import com.mulsalasoft.interview.drones.entities.Medication;
 import com.mulsalasoft.interview.drones.models.BaseResponse;
 import com.mulsalasoft.interview.drones.models.DeployRequest;
+import com.mulsalasoft.interview.drones.models.enums.DroneModel;
 import com.mulsalasoft.interview.drones.models.enums.DroneState;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
@@ -71,8 +72,7 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
     @Operation(summary = "updates a drone", description = "this simply updates a drones' model and state. Based on the scope, this resource would be used to communicate specifically to the drones and dispatch commands based on the defined drone state")
     @Override
     public void update(Drone request) {
-        EntityNotFoundException enfe = new EntityNotFoundException("can not find drone with id".concat(request.getId().toString()));
-        Drone droneRecord = dataService.getDroneRepo().findById(request.getId()).orElseThrow(() -> enfe);
+        Drone droneRecord = read(request.getId());
         droneRecord.setModel(request.getModel());
         droneRecord.setState(request.getState());
         dataService.getDroneRepo().save(droneRecord);
@@ -95,8 +95,7 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public BaseResponse loadDrone(@RequestBody DeployRequest request) {
 
-        EntityNotFoundException enfe = new EntityNotFoundException("can not find drone with id".concat(request.getDroneId().toString()));
-        Drone droneRecord = dataService.getDroneRepo().findById(request.getDroneId()).orElseThrow(() -> enfe);
+        Drone droneRecord = read(request.getDroneId());
 
         if (droneRecord.getBatteryPercentage() > 25) {
             List<Medication> medications = (List<Medication>) dataService.getMedicationRepo().findAllById(request.getMedicationIds());
@@ -110,5 +109,44 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
         }
         return new BaseResponse("battery low, drone can not be deployed");
 
+    }
+
+    @Override
+    public void loadData() {
+        Drone droneRecod = new Drone();
+        droneRecod.setBatteryPercentage(80);
+        droneRecod.setModel(DroneModel.CRUISE);
+        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setWeight(100.50);
+        droneRecod.setSerialNumber("DRD2-001");
+
+        dataService.getDroneRepo().save(droneRecod);
+
+        droneRecod = new Drone();
+        droneRecod.setBatteryPercentage(80);
+        droneRecod.setModel(DroneModel.HEAVY);
+        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setWeight(100.50);
+        droneRecod.setSerialNumber("DRD2-002");
+
+        dataService.getDroneRepo().save(droneRecod);
+
+        droneRecod = new Drone();
+        droneRecod.setBatteryPercentage(80);
+        droneRecod.setModel(DroneModel.LIGHT);
+        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setWeight(100.50);
+        droneRecod.setSerialNumber("DRD2-003");
+
+        dataService.getDroneRepo().save(droneRecod);
+
+        droneRecod = new Drone();
+        droneRecod.setBatteryPercentage(80);
+        droneRecod.setModel(DroneModel.MIDDLE);
+        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setWeight(100.50);
+        droneRecod.setSerialNumber("DRD2-004");
+
+        dataService.getDroneRepo().save(droneRecod);
     }
 }

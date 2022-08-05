@@ -4,6 +4,7 @@
  */
 package com.mulsalasoft.interview.drones;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.constraints.Min;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -46,4 +47,10 @@ public interface ControllerStrategy<O> {
     @ResponseStatus(HttpStatus.ACCEPTED)
     @DeleteMapping(path = "delete")
     void delete(@PathVariable Long id);
+    
+     /**
+     * this function preloads the database with sample drones and medications
+     */
+    @PostConstruct
+    public void loadData();
 }
