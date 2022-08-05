@@ -5,7 +5,7 @@ Maven is used in dependency management
 
 # Stack
 
-![](https://img.shields.io/badge/h2-database-✓-blue.svg) 
+![](https://img.shields.io/badge/h2--database-%E2%9C%93-orange) 
 ![](https://img.shields.io/badge/java_17-✓-blue.svg)
 ![](https://img.shields.io/badge/spring_boot-✓-blue.svg)
 ![](https://img.shields.io/badge/swagger_3-✓-green.svg)
