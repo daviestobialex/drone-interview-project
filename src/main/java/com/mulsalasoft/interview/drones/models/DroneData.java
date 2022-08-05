@@ -6,12 +6,13 @@ package com.mulsalasoft.interview.drones.models;
 
 import com.mulsalasoft.interview.drones.models.enums.DroneModel;
 import com.mulsalasoft.interview.drones.models.enums.DroneState;
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -22,7 +23,7 @@ import lombok.Data;
 @MappedSuperclass
 public class DroneData extends BaseResponse implements Serializable {
 
-    @Max(value = 100, message = "drone serial number can not exceed 100 characters")
+    @Size(max = 100, message = "drone serial number can not exceed 100 characters")
     @Column(nullable = false, unique = true, length = 100)
     @NotBlank(message = "serial number can not be null or blank")
     protected String serialNumber;

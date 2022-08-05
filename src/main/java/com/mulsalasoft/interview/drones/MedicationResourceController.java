@@ -6,7 +6,6 @@ package com.mulsalasoft.interview.drones;
 
 import com.mulsalasoft.interview.drones.entities.Medication;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.persistence.EntityNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +14,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.SecureRandom;
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -34,7 +36,8 @@ import org.springframework.web.multipart.MultipartFile;
  * @author daviestobialex
  */
 @Slf4j
-@RestController("mediactions")
+@RestController
+@RequestMapping("mediactions")
 public class MedicationResourceController implements ControllerStrategy<Medication> {
 
     private final DataService dataService;
@@ -115,10 +118,11 @@ public class MedicationResourceController implements ControllerStrategy<Medicati
         }
     }
 
+    @PostConstruct
     @Override
     public void loadData() {
         Medication medicationRecord = new Medication();
-        medicationRecord.setCode("MED-001");
+        medicationRecord.setCode("MED_001");
         medicationRecord.setImageId(null);
         medicationRecord.setName("Paracetamol");
         medicationRecord.setWeight(10.00);
@@ -126,7 +130,7 @@ public class MedicationResourceController implements ControllerStrategy<Medicati
         dataService.getMedicationRepo().save(medicationRecord);
 
         medicationRecord = new Medication();
-        medicationRecord.setCode("MED-002");
+        medicationRecord.setCode("MED_002");
         medicationRecord.setImageId(null);
         medicationRecord.setName("VitaminC");
         medicationRecord.setWeight(15.00);
@@ -134,7 +138,7 @@ public class MedicationResourceController implements ControllerStrategy<Medicati
         dataService.getMedicationRepo().save(medicationRecord);
 
         medicationRecord = new Medication();
-        medicationRecord.setCode("MED-003");
+        medicationRecord.setCode("MED_003");
         medicationRecord.setImageId(null);
         medicationRecord.setName("Anti-botics");
         medicationRecord.setWeight(20.00);

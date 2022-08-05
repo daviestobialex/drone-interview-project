@@ -4,13 +4,14 @@
  */
 package com.mulsalasoft.interview.drones.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
-import jakarta.persistence.MappedSuperclass;
 import java.io.Serializable;
-import javax.validation.constraints.Max;
+import javax.persistence.Column;
+import javax.persistence.Lob;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -26,10 +27,10 @@ public class MedicationData extends BaseResponse implements Serializable {
     @NotBlank(message = "medidcation name can not be null or blank")
     protected String name;
     @Column(precision = 5)
-    @NotBlank(message = "medidcation weight can not be null")
+    @NotNull(message = "medidcation weight can not be null")
     protected Double weight;
     @NotBlank(message = "medidcation code can not be null or blank")
-    @Max(value = 50, message = "medication code can not exceed 50 characters")
+    @Size(max = 50, message = "medication code can not exceed 50 characters")
     @Column(unique = true, nullable = false, length = 50)
     @Pattern(regexp = "^[\\_A-Z0-9]*$", message = "medication code can only accept upper case letters, underscore(_) and numbers")
     protected String code;

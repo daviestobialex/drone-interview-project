@@ -1,9 +1,9 @@
 package com.mulsalasoft.interview.drones;
 
 import com.mulsalasoft.interview.drones.models.BaseResponse;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

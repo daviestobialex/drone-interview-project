@@ -7,6 +7,7 @@ package com.mulsalasoft.interview.drones;
 import com.mulsalasoft.interview.drones.entities.Medication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -15,6 +16,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface MedicationRepository extends CrudRepository<Medication, Long> {
 
-    Page<Medication> findAll(PageRequest of);
+    Page<Medication> findAll(Pageable pageable);
 
 }

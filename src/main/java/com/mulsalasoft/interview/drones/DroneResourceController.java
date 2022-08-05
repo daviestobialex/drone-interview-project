@@ -11,9 +11,10 @@ import com.mulsalasoft.interview.drones.models.DeployRequest;
 import com.mulsalasoft.interview.drones.models.enums.DroneModel;
 import com.mulsalasoft.interview.drones.models.enums.DroneState;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.constraints.Min;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityNotFoundException;
+import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author daviestobialex
  */
-@RestController("drone")
+@RestController
+@RequestMapping("drone")
 public class DroneResourceController implements ControllerStrategy<Drone> {
 
     private final DataService dataService;
@@ -111,6 +114,7 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
 
     }
 
+    @PostConstruct
     @Override
     public void loadData() {
         Drone droneRecod = new Drone();
@@ -125,7 +129,7 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
         droneRecod = new Drone();
         droneRecod.setBatteryPercentage(80);
         droneRecod.setModel(DroneModel.HEAVY);
-        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setState(DroneState.DELIVERED);
         droneRecod.setWeight(100.50);
         droneRecod.setSerialNumber("DRD2-002");
 
@@ -134,7 +138,7 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
         droneRecod = new Drone();
         droneRecod.setBatteryPercentage(80);
         droneRecod.setModel(DroneModel.LIGHT);
-        droneRecod.setState(DroneState.IDLE);
+        droneRecod.setState(DroneState.DELIVERING);
         droneRecod.setWeight(100.50);
         droneRecod.setSerialNumber("DRD2-003");
 
