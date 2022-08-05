@@ -1,4 +1,56 @@
-## Drones
+## Musalasoft Drones Code Interview
+
+This is a java spring project
+Maven is used in dependency management
+
+# Stack
+
+![](https://img.shields.io/badge/h2-database-✓-blue.svg) 
+![](https://img.shields.io/badge/java_17-✓-blue.svg)
+![](https://img.shields.io/badge/spring_boot-✓-blue.svg)
+![](https://img.shields.io/badge/swagger_3-✓-green.svg)
+
+The following Technology stack was used in this project :
+
+**Java 17** : Core language used
+
+**SpringBoot 3.0** : Java Framework
+
+**H2-database** : Internal in-memory Database
+
+
+#Design Pattern Used
+
+Strategy Design Pattern
+
+# Steps To Run
+
+**1** - Do a `git clone` of the project : 
+
+**2** - Open application.properties , set the default profile to run { dev / live / uat } for this project no profiles were set
+
+**4** - Run the project from the IDE or from terminal using `java 17` or newer with the following command `java -jar service.jar`
+
+**5** - Access service swagger documentation `http://localhost:86/api/swagger.html`
+
+
+# Package Structure  - com.mulsalasoft.interview.drones
+
+**1** - entities : This package contains all jpa database tables used in this project
+
+**2** - models : This package contains all Enums, Application Request and Response Objects,including external objects request and response objects for external calls
+
+
+# Deploying the application
+
+After setting the application profile in the `application.properties` files, you can build the project using `mvn clean install`.
+
+You can also run tests associated with this project using `mvn test` to make sure all the test cases are passed although the `mvn clean install` would also run test
+as it builds the project.
+
+Once the build is complete you will find a `.jar` file inside the **target** folder to run the jar files use the following command `java -jar operation-0.0.1-SNAPSHOT.jar`.
+
+**NOTE** :  you need java installed on your environment to be able to run this project.
 
 [[_TOC_]]
 
