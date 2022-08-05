@@ -14,7 +14,7 @@ The following Technology stack was used in this project :
 
 **Java 17** : Core language used
 
-**SpringBoot 3.0** : Java Framework
+**SpringBoot 2.7.2** : Java Framework
 
 **H2-database** : Internal in-memory Database
 
@@ -31,7 +31,7 @@ Strategy Design Pattern
 
 **4** - Run the project from the IDE or from terminal using `java 17` or newer with the following command `java -jar service.jar`
 
-**5** - Access service swagger documentation `http://localhost:86/api/swagger.html`
+**5** - Access service swagger documentation `http://localhost:5875/api/swagger-ui.html`
 
 
 # Package Structure  - com.mulsalasoft.interview.drones
@@ -40,6 +40,13 @@ Strategy Design Pattern
 
 **2** - models : This package contains all Enums, Application Request and Response Objects,including external objects request and response objects for external calls
 
+# Testing image upload
+You will not be able to test medication image upload from the swagger documentation. So below is a sample curl script you can import to your postman to test
+
+````
+curl --location --request PUT 'http://localhost:5875/api/mediaction/picture/upload?id=1' \
+--form 'imageFile=@"/home/daviestobialex/Pictures/976218.png"'
+````
 
 # Deploying the application
 

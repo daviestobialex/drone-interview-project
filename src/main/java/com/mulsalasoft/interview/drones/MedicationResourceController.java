@@ -23,6 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Slf4j
 @RestController
-@RequestMapping("mediactions")
+@RequestMapping("mediaction")
 public class MedicationResourceController implements ControllerStrategy<Medication> {
 
     private final DataService dataService;
@@ -78,12 +79,12 @@ public class MedicationResourceController implements ControllerStrategy<Medicati
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
-    @PutMapping(path = "/picture")
+    @PutMapping(path = "/picture/upload")
     public void setPicture(@RequestParam("imageFile") MultipartFile file, @RequestParam Long id) throws IOException {
 
         Medication medicationRecord = read(id);
 
-        String buildid = "-".concat(Integer.toString(new SecureRandom().nextInt(99))).concat(".").concat(FilenameUtils.getExtension(file.getOriginalFilename()));
+        String buildid = "image".concat(".").concat(FilenameUtils.getExtension(file.getOriginalFilename()));
 
         medicationRecord.setImageId(buildid);
 

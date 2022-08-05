@@ -6,6 +6,7 @@ package com.mulsalasoft.interview.drones.models;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -15,6 +16,7 @@ import lombok.Data;
 @Data
 public class DeployRequest implements Serializable {
 
+    @NotNull(message = "medication Ids can not be null")
     protected List<Long> medicationIds;
     protected Long droneId;
 }

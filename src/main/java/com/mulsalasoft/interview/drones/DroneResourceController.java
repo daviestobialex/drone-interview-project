@@ -78,7 +78,9 @@ public class DroneResourceController implements ControllerStrategy<Drone> {
         Drone droneRecord = read(request.getId());
         droneRecord.setModel(request.getModel());
         droneRecord.setState(request.getState());
+      
         dataService.getDroneRepo().save(droneRecord);
+        
     }
 
     @Override

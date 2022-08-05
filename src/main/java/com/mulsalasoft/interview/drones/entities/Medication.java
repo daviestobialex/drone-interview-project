@@ -42,12 +42,12 @@ public class Medication extends MedicationData implements Serializable {
     private Timestamp dateCreated;
 
     @Transient
-    public String imagePath() {
+    public String getImagePath() {
         if (id == null || imageId == null) {
             return null;
         }
 
-        return MedicationResourceController.MEDICATIONIMGS + id.toString().concat(imageId);
+        return MedicationResourceController.MEDICATIONIMGS + id.toString().concat("/").concat(imageId);
     }
 
 }
